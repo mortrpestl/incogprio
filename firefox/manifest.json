@@ -19,8 +19,12 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "somerandomemail@gmail.com", //i just put some random e-mail because it's required for some reason
-      "strict_min_version": "109.0"
+      "id": "incogprio@local.com",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
     }
   }
 }

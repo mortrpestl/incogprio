@@ -20,14 +20,16 @@ A browser extension to mask priorities in CRS, and allows you to hide your prior
 
 ### Firefox (Gecko browsers)
 
-2. Go to `about:debugging`
-3. Click `Load temporary add-on`
-4. Find and click `manifest.json` from `firefox` folder
+2. Allow unsigned extensions by `about:config` -> `xpinstall.signatures.required : false`
+3. Click `Add-on from file`
+4. Find and click `incogprio.xpi` from `firefox` folder
 
 Installation done! Try it out in UPD CRS!
 
 ## Disclaimers
 
 The effects are purely visual (for privacy purposes). This does *not* change your true priority.
+
+Also, check your real prio from time to time by unmasking priority occasionally, just so you can check if it changed :D
 
 MIT License © 2026 mortrpestl
