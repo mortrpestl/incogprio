@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Incogprio",
+  "version": "1.0",
+  "description": "Masks your preenlistment priority on CRS :)",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://crs.upd.edu.ph/preenlistment*",
+        "https://crs.upd.edu.ph/user/view/classmessages*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "somerandomemail@gmail.com", //i just put some random e-mail because it's required for some reason
+      "strict_min_version": "109.0"
+    }
+  }
+}
