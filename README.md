@@ -1,6 +1,6 @@
 # IncogPrio
 
-A browser extension to mask priorities in CRS. A privacy extension that allows you to hide your priority in public.
+A browser extension to mask priorities in CRS, and allows you to hide your priority in public (for privacy purposes).
 
 ![](sample.png)
 
