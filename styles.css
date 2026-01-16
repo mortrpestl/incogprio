@@ -1,0 +1,110 @@
+body {
+  font-family: 'Consolas New', Consolas, monospace;
+  font-size: 14px;
+  margin: 0;
+  padding: 16px;
+  background-color: #fafafa;
+  color: #333;
+  width: 320px;
+}
+
+
+h3 {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  color: #800000;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.title-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  accent-color: green;
+}
+
+#replacement {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #800000;
+  background: #fff;
+  color: #222;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  margin-top: 0px;
+
+}
+
+#replacement::placeholder {
+  font-family: 'Consolas New', Consolas, monospace;
+  font-size: 14px;
+  color: #888;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+button {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #800000;
+  cursor: pointer;
+  text-align: center;
+}
+
+#save {
+  color: #fff;
+  background-color: #800000;
+}
+
+#reset {
+  color: #800000;
+  background-color: #fff;
+}
+
+#status {
+  font-size: 0.9em;
+  color: #007700;
+  margin-top: 8px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#save:disabled {
+  background-color: #b33b3b;
+  color: #f0dcdc;
+  border: 1px solid #800000;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.disclaimer {
+  font-size: 12px;
+}
+
+.credits {
+  font-size: 8px;
+}
+
