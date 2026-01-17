@@ -26,6 +26,10 @@ A browser extension to **mask student numbers and priorities** in CRS, allowing 
 
 Installation done! Try it out in UPD CRS!
 
+## Limitations
+
+Not all student number instances are redacted as of now, only the ones in the sticky top bar, preenlistment, and home page.
+
 ## Disclaimers
 
 The effects are purely visual (for privacy purposes). This does *not* change your true priority.
