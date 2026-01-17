@@ -1,5 +1,5 @@
 body {
-  font-family: 'Consolas New', Consolas, monospace;
+  font-family: "Consolas New", Consolas, monospace;
   font-size: 14px;
   margin: 0;
   padding: 16px;
@@ -7,7 +7,6 @@ body {
   color: #333;
   width: 320px;
 }
-
 
 h3 {
   font-size: 18px;
@@ -49,11 +48,10 @@ input[type="checkbox"] {
   box-sizing: border-box;
   margin-bottom: 12px;
   margin-top: 0px;
-
 }
 
 #replacement::placeholder {
-  font-family: 'Consolas New', Consolas, monospace;
+  font-family: "Consolas New", Consolas, monospace;
   font-size: 14px;
   color: #888;
 }
@@ -107,4 +105,3 @@ button {
 .credits {
   font-size: 8px;
 }
-

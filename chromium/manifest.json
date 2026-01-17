@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Incogprio",
   "version": "1.0",
-  "description": "Masks your preenlistment priority on CRS :)",
+  "description": "Mask your student number and priority in CRS :)",
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html",
@@ -11,8 +11,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://crs.upd.edu.ph/preenlistment*",
-        "https://crs.upd.edu.ph/user/view/classmessages*"
+        "https://crs.upd.edu.ph/*"
       ],
       "js": ["content.js"]
     }

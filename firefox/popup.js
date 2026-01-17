@@ -1,56 +1,64 @@
-function showStatus(message) {
-  console.log(message + " started");
-  let status = document.getElementById("status");
-  if (!status) {
-    status = document.createElement("div");
-    status.id = "status";
-    document.body.appendChild(status);
-  }
-  status.textContent = message;
-  status.style.opacity = "1";
-  setTimeout(() => {
-    status.style.opacity = "0";
-  }, 750);
-  console.log(message + " ended");
-}
+import { showStatus, updateStorage, resetField } from "./validation.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const data = await chrome.storage.sync.get(["enabled", "text"]);
-  const toggle = document.getElementById("toggle");
-  const replacement = document.getElementById("replacement");
-  const saveBtn = document.getElementById("save");
+  const storageKeys = ["enabled", "text", "studentEnabled"];
+  const data = await chrome.storage.sync.get(storageKeys);
 
-  toggle.checked = data.enabled || false;
-  replacement.value = data.text || "";
+  const elements = {
+    toggle: document.getElementById("toggle"),
+    replacement: document.getElementById("replacement"),
+    saveBtn: document.getElementById("save"),
+    resetBtn: document.getElementById("reset"),
+    studentToggle: document.getElementById("studentToggle"),
+  };
 
-  saveBtn.disabled = replacement.value.trim() === "";
+  elements.toggle.checked = data.enabled || false;
+  elements.replacement.value = data.text || "";
+  elements.saveBtn.disabled = !elements.replacement.value.trim();
+  elements.toggle.disabled = !elements.replacement.value.trim();
+  elements.studentToggle.checked = data.studentEnabled || false;
 
-  replacement.addEventListener("input", (e) => {
-    saveBtn.disabled = e.target.value.trim() === "";
+  function checkTextAvailability() {
+    const hasText = elements.replacement.value.trim().length > 0;
+    elements.saveBtn.disabled = !hasText;
+    elements.toggle.disabled = !hasText;
+    if (!hasText) elements.toggle.checked = false;
+  }
+
+  checkTextAvailability(); 
+
+  elements.replacement.addEventListener("input", (e) => {
+    checkTextAvailability();
   });
 
-  toggle.addEventListener("change", async () => {
-    await chrome.storage.sync.set({ enabled: toggle.checked });
-    chrome.runtime.sendMessage({ action: "replaceText" });
+  elements.toggle.addEventListener("change", async () => {
+    await updateStorage("enabled", elements.toggle.checked);
+    sendMessageToActiveTab("priority");
   });
-});
 
-document.getElementById("save").addEventListener("click", async () => {
-  const toggle = document.getElementById("toggle");
-  const replacement = document.getElementById("replacement");
-  await chrome.storage.sync.set({ text: replacement.value });
-  if (toggle.checked) chrome.runtime.sendMessage({ action: "replaceText" });
-  showStatus("Text option saved.");
-});
+  elements.saveBtn.addEventListener("click", async () => {
+    await updateStorage("text", elements.replacement.value);
+    showStatus("Replacement text saved.");
+    sendMessageToActiveTab("priority");
+  });
 
-document.getElementById("reset").addEventListener("click", async () => {
-  const toggle = document.getElementById("toggle");
-  const replacement = document.getElementById("replacement");
-  const saveBtn = document.getElementById("save");
-  toggle.checked = false;
-  replacement.value = "";
-  saveBtn.disabled = true;
-  await chrome.storage.sync.set({ enabled: false, text: "" });
-  chrome.runtime.sendMessage({ action: "replaceText" });
-  showStatus("Settings reset to default");
+  elements.resetBtn.addEventListener("click", async () => {
+    resetField(elements.toggle, elements.replacement, elements.saveBtn, ["enabled", "text"]);
+    showStatus("Priority settings reset.");
+    checkTextAvailability();
+    sendMessageToActiveTab("priority");
+  });
+
+  elements.studentToggle.addEventListener("change", async () => {
+    await updateStorage("studentEnabled", elements.studentToggle.checked);
+    sendMessageToActiveTab("student");
+  });
+
+  function sendMessageToActiveTab(updateType) {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs[0]?.id) {
+        chrome.tabs.sendMessage(tabs[0].id, { updateType });
+      }
+    });
+  }
 });

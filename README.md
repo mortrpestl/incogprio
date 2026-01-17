@@ -1,6 +1,6 @@
 # IncogPrio
 
-A browser extension to mask priorities in CRS, and allows you to hide your priority in public (for privacy purposes).
+A browser extension to **mask student numbers and priorities** in CRS, allowing you to conceal them in public (for privacy purposes).
 
 ![](sample.png)
 
@@ -21,7 +21,7 @@ A browser extension to mask priorities in CRS, and allows you to hide your prior
 ### Firefox (Gecko browsers)
 
 2. Allow unsigned extensions by `about:config` -> `xpinstall.signatures.required : false`
-3. Click `Add-on from file`
+3. Go to `about:addons`, click the "Settings" button (the gear symbol), and click `Install add-on from file`
 4. Find and click `incogprio.xpi` from `firefox` folder
 
 Installation done! Try it out in UPD CRS!
